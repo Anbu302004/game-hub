@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import apiClient from "../services/api-client";
+import { CanceledError } from "axios";
 
 interface Genre {
     id: number;
@@ -19,17 +21,17 @@ const useGenres = () => {
         const controller = new AbortController();
         setLoading(true);
 
-        fetch("/genres", { signal: controller.signal })
-            .then(async (res) => {
-                if (!res.ok) throw new Error("Failed to fetch genres");
-                const data: FetchGenresResponse = await res.json();
-                setGenres(data.results);
+        apiClient
+            .get<FetchGenresResponse>("/genres", { signal: controller.signal })
+            .then(res => {
+                setGenres(res.data.results);
+                setLoading(false);
             })
-            .catch((err) => {
-                if (err.name === "AbortError") return;
+            .catch(err => {
+                if (err instanceof CanceledError) return;
                 setError(err.message);
-            })
-            .finally(() => setLoading(false));
+                setLoading(false);
+            });
 
         return () => controller.abort();
     }, []);

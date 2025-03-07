@@ -10,7 +10,7 @@ import GenreList from "./components/GenreList"
    }}>
     <GridItem area='nav'><NavBar/></GridItem>
     <Show above="lg"> 
-      <GridItem area='aside'>Aside
+      <GridItem area='aside'>
         <GenreList/>
       </GridItem>
     </Show>
