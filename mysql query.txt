@@ -1,0 +1,7 @@
+create table user(id int AUTO_INCREMENT,username varchar(255),password varchar(255),PRIMARY key(id)) 
+	create TABLE menu (id int AUTO_INCREMENT,name varchar(255),url varchar(255), PRIMARY key (id))
+
+
+
+create table user(id  int AUTO_INCREMENT,username varchar(255),password varchar(255),PRIMARY Key(id))
+create TABLE menu(id int AUTO_INCREMENT,name varchar(255),url varchar(255),PRIMARY Key(id))

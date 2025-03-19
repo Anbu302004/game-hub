@@ -1,0 +1,49 @@
+create table class(id int(11), classroom varchar(255), primary key (id));
+create table student(id int(11), class_id int(11), name varchar(255), primary key (id), FOREIGN key (class_id) REFERENCES class (id));
+1. DEGREE PAGE:
+create table degree(id int auto_increment,banner2_title varchar(255),banner2_subtitle varchar(255),primary key (id));
+create table degreelist(id int auto_increment,degree_id int(11),section2_img varchar (255),section2_content text,section2_buttontext varchar(255),
+                                                    section2_buttonlink varchar(255),section2_buttontarget vachar(255),section2_buttonbg varchar(255),banner3_title varchar(255),
+		banner3_subtitle varchar(255),banner4_title varchar(255),banner4_subtitle varchar(255),
+		banner5_title varchar(255),banner5_subtitle varchar(255),banner6_title varchar(255),banner6_subtitle varchar(255),
+	                       primary key (id), FOREIGN key (degree_id) REFERENCES  degree(id));
+2.DEPARTEMENT PAGE:
+ 
+create table departement(id int auto_increment,degreelist_id int(11),section3_img varchar(255),
+		                     section3_imgtarget varchar(255),section3_subtitle varchar(255),primary key (id), FOREGIN key (degreelist_id ) 
+			REFERENECES degreelist(id));
+3.SEMESTER PAGE:
+ 
+create table semester(id int auto_increment,departement_id int(11) ,section4_img varchar(255),section4_imgtarget varchar(255),
+		           section4_subtitle varchar(255),section4_shortdescription varchar(255),primary key(id), FOREGIN key (departement_id)
+		          REFERENCES departement(id));
+4.SUBJECT  PAGE: 
+create table subject(id int auto_increment,semester_id int(11), section5_img varchar(255),section5_imgtarget varchar(255),
+		          section5_subtitle varchar(255), primary key(id),FOREGIN key (semester_id)REFERENCES semester(id));    
+5.DOCUMENT   PAGE:
+ 
+create table document(id int auto_increment,subject_id int(11),section6_img varchar(255),section6_imgtarget varchar(255),section6_subtitle
+		               varchar(255),primary key(id), FOREGIN key (subject_id)REFERENCES subject(id));
+6.MENU:
+create table menu (id int auto_increment,name varchar(255),url varchar(255), classname varchar(255),target varchar(255),primary key (id));
+7.FOOTER:
+create table footer(id int auto_increment,name varchar(255),url varchar(255),type varchar(255),target varchar(255), primay key (id));
+8.HELP AND SUPPORT PAGE:
+create table help(id int auto_increment,banner7_title varchar(255),banner7_subtitle varchar(255),primary key(id));
+create table help_list(id int auto _increment,section7_title varchar(255),section7_content text,primary key(id));
+9.TERMS AND CONDITON PAGE:
+create table terms(id int auto_increment,banner8_title varchar(255),banner8_subtitle varchar(255),primary key(id));
+create table terms_list(id int auto_increment,section8_title varchar(255),section8_content text,primary key(id));
+10.CORE ELEMENTS:
+create table core(id int auto_increment,menu_logo varchar(255),footer_logo varchar(255),footer_address varchar(255),footer2_content text ,primary key (id));
+11.HOME PAGE:
+create table home(id int auto_increment,banner_title varchar(255),banner_subtitle varchar(255),section_title varchar(255),section_subtitle
+	                  varchar(255),section_buttontext varchar(255),section_buttonlink varchar(255),section_buttontarget varchar(255),section_buttonbg 
+	                  varchar(255),course_title varchar(255),course_subtitle varchar(255),course_buttontext varchar(255),course_buttonlink varchar(255),
+	                 course_buttontarget varchar(255),course_buttonbg varchar(255),primary key (id));
+create table home_list(id int auto_increment,course_img varchar(255),course_imgtarget varchar(255),course_title1 varchar(255),course_subtitle
+		     varchar(255),course_content text,primary key (id));
+12.ABOUT PAGE:
+create table about(id int auto_increment,banner9_title varchar(255),banner9_subtitle varchar(255),primary key (id));
+create table about_list(id int auto_increment,section9_title varchar(255),section9_content text,section9_bg varchar(255),primary key (id));
+
